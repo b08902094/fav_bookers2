@@ -14,6 +14,14 @@
             	    <th>introduction</th>
             	    <th><%= @book.user.introduction %></th>
                 </tr>
+                  <tr>
+    <th>follows</th>
+    <th><%= link_to @book.user.followings.count, user_followings_path(@book.user) %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to @book.user.followers.count, user_followers_path(@book.user) %></th>
+  </tr>
               </tbody>
             </table>
       <h2 class="mt-3">New book</h2>
@@ -44,7 +52,7 @@
         <%= render "books/comment", book: @book %>
       </div>
       <div id="comment-form">
-        <%= render "book_comments/comment" , { book: @book , book_comment: @book_comment } %>
+        <%= render "book_comments/form" , { book: @book , book_comment: @book_comment } %>
       </div>
     </div>
   </div>

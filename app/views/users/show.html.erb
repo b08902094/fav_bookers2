@@ -16,6 +16,14 @@
 	  <th>introduction</th>
 	  <th><%= @user.introduction %></th>
   </tr>
+    <tr>
+    <th>follows</th>
+    <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+  </tr>
 </tbody></table>
 
 <div class="row">
@@ -50,17 +58,9 @@
         </td>
         <td><a href="<%= book_path(book.id) %>"><%= book.title %></a></td>
         <td><%= book.body %></td>
-        <td>
-            <% if book.favorited_by?(current_user) %>
-              <%= link_to book_favorites_path(book), method: :delete do %>
-                <i class="fas fa-heart" style="color: #d93093;"></i><font color="#d93093"><%= book.favorites.count %></font>
-              <% end %>
-            <% else %>
-              <%= link_to book_favorites_path(book), method: :post do %>
-                <i class="fa-solid fa-heart"></i><%= book.favorites.count %>
-              <% end %>
-            <% end %>
-        </td>
+        <td id="favorite_button_<%= book.id %>">
+　　　      <%= render "books/favorites", book: book %>
+　　    </td>
         <td>コメント数: <%= book.book_comments.count %></td>
       </tr>
       <% end %>
