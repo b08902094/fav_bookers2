@@ -22,6 +22,7 @@
     <th>followers</th>
     <th><%= link_to @book.user.followers.count, user_followers_path(@book.user) %></th>
   </tr>
+  <tr><td><%= render "relationships/button", user: @book.user, options: { class: "follow-link" } %></td></tr>
               </tbody>
             </table>
       <h2 class="mt-3">New book</h2>
