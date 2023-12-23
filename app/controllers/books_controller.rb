@@ -42,7 +42,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    to = Time.current.at_end_of_day
+    from = Time.current.weeks_ago(1)
+    @books = Book.includes(:favorites).sort_by{ |book| -book.favorites.where(created_at: from...to).count }
     @book = Book.new
     @user = User.find(current_user.id)
   end

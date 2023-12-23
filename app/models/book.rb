@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :user
   has_many :book_comments, dependent: :destroy
-
+  has_many :week_favorites, -> { where(created_at: Time.current.all_week) }
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 200 }
 
