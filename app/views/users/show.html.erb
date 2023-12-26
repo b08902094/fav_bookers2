@@ -27,6 +27,9 @@
   <tr>
     <td><%= render "relationships/button", user: @user, options: { class: "follow-link" } %></td>
   </tr>
+  <tr>
+  <td><%= render  "chats/dmButton", user: @user %></td>
+    </tr>
 
 </tbody></table>
 
@@ -63,8 +66,8 @@
         <td><a href="<%= book_path(book.id) %>"><%= book.title %></a></td>
         <td><%= book.body %></td>
         <td id="favorite_button_<%= book.id %>">
-　　　      <%= render "books/favorites", book: book %>
-　　    </td>
+      <%= render "books/favorites", book: book %>
+      </td>
         <td>コメント数: <%= book.book_comments.count %></td>
       </tr>
       <% end %>

@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   has_many :week_favorites, -> { where(created_at: Time.current.all_week) }
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 200 }
-
+  has_many :view_counts, dependent: :destroy
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

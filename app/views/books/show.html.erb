@@ -47,6 +47,7 @@
           <td><%= @book.body %></td>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td>閲覧数: <%= @book.view_counts.count %></td>
         </tr>
       </table>
       <div id="comment_index">

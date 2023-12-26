@@ -50,10 +50,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book_comment = BookComment.new
-    @book = Book.find(params[:id])
-    @user = User.find(current_user.id)
     @book_new = Book.new
+    @book = Book.find(params[:id])
+    @user = @book.user
+    current_user.view_counts.create(book_id: @book.id)
+    @book_comment = BookComment.new
   end
 
   def destroy
