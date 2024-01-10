@@ -42,9 +42,15 @@ class BooksController < ApplicationController
   end
 
   def index
-    to = Time.current.at_end_of_day
-    from = Time.current.weeks_ago(1)
-    @books = Book.includes(:favorites).sort_by{ |book| -book.favorites.where(created_at: from...to).count }
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:star_count]
+      @books = Book.star_count
+    else
+      @books = Book.all
+    end
     @book = Book.new
     @user = User.find(current_user.id)
   end
@@ -66,6 +72,6 @@ class BooksController < ApplicationController
   private
 
   def post_image_params
-    params.require(:book).permit(:title, :body, :image)
+    params.require(:book).permit(:title, :body, :image, :star)
   end
 end

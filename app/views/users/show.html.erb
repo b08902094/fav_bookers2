@@ -69,6 +69,7 @@
       <%= render "books/favorites", book: book %>
       </td>
         <td>コメント数: <%= book.book_comments.count %></td>
+        <td><%= render "books/static_rate", book: book %></td>
       </tr>
       <% end %>
   </tbody>
