@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chats/show'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
@@ -16,4 +15,9 @@ Rails.application.routes.draw do
   	get "followers" => "relationships#followers", as: "followers"
   end
   resources :chats, only: [:show, :create, :destroy]
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+    get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
+  end
 end
