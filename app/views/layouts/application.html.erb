@@ -57,6 +57,9 @@
   <main class="mb-auto">
     <div>
       <%= flash[:notice] %>
+      <% if user_signed_in? %>
+        <%= render 'tagsearches/tagsearch' %>
+      <% end %>
     </div>
   <%= yield %>
   </main>

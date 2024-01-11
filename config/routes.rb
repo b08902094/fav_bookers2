@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     get "new/mail" => "groups#new_mail"
     get "send/mail" => "groups#send_mail"
   end
+  get 'tagsearches/search', to: 'tagsearches#search'
 end

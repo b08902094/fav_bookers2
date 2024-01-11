@@ -67,6 +67,10 @@
       <%= render "static_rate", book: @book %>
     </div>
   <% end %>
+  <div class="form-group">
+  <label>Category</label>
+  <%= f.text_field :category,class: 'form-control book_category' %>
+</div>
   <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
     </div>
@@ -102,12 +106,16 @@
     </td>
     <td>閲覧数: <%= book.view_counts.count %></td>
     <td><%= render "books/static_rate", book: book %></td>
-    <td><%= l book.created_at %></td>
+    <td><%= book.created_at %></td>
+    <td>
+      <% if book.category.present? %>
+        <%=link_to book.category,tagsearches_search_path(content:book.category)%>
+      <% end %>
+</td>
       </tr>
       <% end %>
   </tbody>
 </table>
-      <%= yield %>
     </main>
   </body>
 </html>

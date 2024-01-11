@@ -7,7 +7,8 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 200 }
   has_many :view_counts, dependent: :destroy
-
+  validates :category, presence: true
+  
   scope :created_today, -> { where(created_at: Time.current.all_day) } 
   scope :created_yesterday, -> { where(created_at: Time.current.yesterday.all_day) } 
   scope :created_2day_ago, -> { where(created_at: 2.day.ago.all_day) }

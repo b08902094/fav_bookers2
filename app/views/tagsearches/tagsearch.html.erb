@@ -1,0 +1,39 @@
+<h2><%= @model %>s search for "<%= @word %>"</h2>
+
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th>Likes</th>
+      <th>Comments</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @books.each do |book| %>
+      <tr>
+        <td><a href="<%= user_path(book.user_id) %>">
+          <%= image_tag book.user.get_profile_image(60,60) %>
+        </td>
+        <td><a href="<%= book_path(book.id) %>"><%= book.title %></a></td>
+        <td><%= book.body %></td>
+    <td id="favorite_button_<%= book.id %>"> 
+      <%= render "books/favorites", book: book %>
+    </td>
+    <td>
+      <%= render "books/count", book: book %>
+    </td>
+    <td>閲覧数: <%= book.view_counts.count %></td>
+    <td><%= render "books/static_rate", book: book %></td>
+    <td><%= book.created_at %></td>
+    <td>
+      <% if book.category.present? %>
+        <%=link_to book.category,tagsearches_search_path(content:book.category)%>
+      <% end %>
+</td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
